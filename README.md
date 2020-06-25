@@ -1,5 +1,19 @@
 # Laboratorio 10 - Sistema de Archivos
 
+**Entrega**: informe en formato PDF con las repuestas a los ejercicios.
+
+## Ejercicio 1: Buffering
+
+El programa `write_bytes.c` escribe la cantidad de bytes indicada en un archivo. Por ejemplo, el siguiente comando escribe 100 Mb en el archivo `tmp.txt` usando un buffer de 4096 bytes:
+
+```sh
+$ ./write_bytes tmp.txt 104857600 4096
+```
+
+1. Obtener un promedio de tiempo de ejecución del programa, usando el comando `time`, al crear un archivo de 100 Mb, con tamaños de buffer de 256, 1024, 4096 y 8192 bytes. Presentar una tabla que indique el tiempo total, de usuario, de sistema y uso de la CPU. Realizar 10 ejecuciones para obtener el promedio. Explicar los resultados.
+
+## Ejercicio 2: E/S de disco en xv6
+
 _xv6_ organiza el disco de la siguiente manera (ver archivo `fs.h` y `mkfs.c`):
 
 ```
@@ -13,22 +27,6 @@ Al iniciar la ejecución, _xv6_ presenta una línea con información acerca de l
 ```
 sb: size 1000 nblocks 941 ninodes 200 nlog 30 logstart 2 inodestart 32 bmap start 58
 ```
-
-## Ejercicio 1: Buffering
-
-El programa `write_bytes.c` escribe la cantidad de bytes indicada en un archivo. Por ejemplo, el siguiente comando escribe 100 Mb en el archivo `tmp.txt` usando un buffer de 4096 bytes:
-
-```sh
-$ ./write_bytes tmp.txt 104857600 4096
-```
-
-1. Obtener un promedio de tiempo de ejecución del programa, usando el comando `time`, al crear un archivo de 100 Mb, con tamaños de buffer de 256, 1024, 4096 y 8192 bytes. Presentar una tabla que indique el tiempo total, de usuario, de sistema y uso de la CPU. Realizar 10 ejecuciones para obtener el promedio. Explicar los resultados.
-
-## Ejercicio 2: Enlaces simbólicos
-
-¿Cómo podría implementarse enlaces simbólicos en xv6? Describir brevemente como sería la implementación, indicando que modificaciones y agregados haría en el sistema.
-
-## Ejercicio 3: E/S de disco en xv6
 
 Agregar en las funciones `bwrite()` y `bread()`, en el archivo `bio.c`, la siguiente invocación a `cprintf()`. De esta manera se muestra un mensaje cada vez que se escribe o lee un bloque en disco:
 
@@ -59,7 +57,7 @@ $ rm d\a
 $ rm d
 ```
 
-## Ejercicio 4: Incrementar el tamaño máximo de un archivo en _xv6_
+## Ejercicio 3: Incrementar el tamaño máximo de un archivo en _xv6_
 
 Un _i-nodo_ en _xv6_ contiene 12 bloques de acceso directo, más un bloque de indirección sencilla que agrega 128 bloques adicionales (512 / 4), por lo que el máximo número de bloques en disco que puede ocupar un archivo es 140 (12 + 128). Como el tamaño de un bloque es igual al de un sector (`BSIZE = 512`), un archivo en _xv6_ puede ocupar como máximo 140 sectores en el disco (71680 bytes).
 
