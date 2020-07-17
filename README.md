@@ -51,9 +51,9 @@ $
 
 ```sh
 $ mkdir d
-$ echo > d\a
-$ echo a > d\a
-$ rm d\a
+$ echo > d/a
+$ echo a > d/a
+$ rm d/a
 $ rm d
 ```
 
