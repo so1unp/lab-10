@@ -51,13 +51,13 @@ $ rm d
 
 ## Ejercicio 2: Incrementar el tamaño máximo de un archivo en _xv6_
 
-Un _i-nodo_ en _xv6_ contiene 12 bloques de acceso directo, más un bloque de indirección sencilla que agrega 128 bloques adicionales (512 / 4), por lo que el máximo número de bloques en disco que puede ocupar un archivo es 140 (12 + 128). Como el tamaño de un bloque es igual al de un sector (`BSIZE = 512`), un archivo en _xv6_ puede ocupar como máximo 140 sectores en el disco (71680 bytes).
+Un _i-nodo_ en _xv6_ contiene 12 bloques de acceso directo y un bloque de indirección sencilla que agrega 128 bloques adicionales (512 / 4). Como reusltado, el máximo número de bloques en disco que puede ocupar un archivo es 140 (12 + 128). Dado que el tamaño de un bloque es igual al de un sector (`BSIZE = 512`), el tamaño máximo de un archivo en _xv6_ es de 71680 bytes (140 sectores en el disco).
 
 En este ejercicio se incrementará el tamaño máximo de un archivo en _xv6_, agregando soporte en la estructura de _i-nodo_ para un bloque de indirección doble.
 
 ### Preliminares
 
-1. En el archivo `Makefile` de _xv6_ indicar que simule un solo CPU (`CPU := 1`), y agregar la opción `-snapshot` en la definición de `QEMUOPTS`. Estos cambios mejoran la performance de _xv6_ al generar archivos grandes, y utilizar solo una CPU facilita la evaluación.
+1. En el archivo `Makefile` de _xv6_ indicar que simule un solo CPU (`CPU := 1`) y agregar la opción `-snapshot` en la definición de `QEMUOPTS`. Estos cambios mejoran la performance de _xv6_ al generar archivos grandes y utilizar solo una CPU facilita la evaluación.
 2. Modificar `FSSIZE` en el archivo `param.h` para que sea igual a 262144 sectores. Esto incrementa el tamaño de la imagen de disco a 128 Mb (262144 * 512 bytes).
 3. Copiar el archivo `big.c` en el directorio de _xv6_, y agregarlo a la lista `UPROGS` en el `Makefile`. Este programa al ejecutarse crea un nuevo archivo, con un tamaño tal que ocupe un número determinado de sectores en el disco.
 4. Compilar y ejecutar _xv6_. Luego, ejecutar el comando `big` con 200 sectores como parámetro. Debe retornar que sólo 140 sectores fueron escritos, ya que es el máximo tamaño posible del archivo.
