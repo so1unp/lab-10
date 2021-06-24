@@ -39,7 +39,7 @@ $
 
 1. Ejecutar el comando `echo "hola" > a.txt`. Explicar las lecturas y escrituras que se realizan.
 
-2. Comentar el `cprintf()` de la función `bread()`. Ejecutar `make clean && make qemu-nox` para volver a generar la imagen del disco. A continuación, iniciar nuevamente xv6 y ejecutar los siguientes comandos. Para cada uno indicar cuáles son los bloques que se modifican y por qué razón:
+2. Comentar el `cprintf()` de la función `bread()`. Ejecutar `make clean && make qemu-nox` para volver a generar la imagen del disco. A continuación, iniciar nuevamente `xv6` y ejecutar los siguientes comandos. Para cada uno indicar cuáles son los bloques que se modifican y por qué razón:
 
 ```sh
 $ mkdir d
@@ -72,11 +72,11 @@ Notar que `bmap()` maneja dos tipos de números de bloques. El argumento `bn` in
 
 ### Modificaciones a realizar
 
-Modificar `bmap()` para que implemente el bloque de indirección doble, además del bloque de indirección sencilla y los bloques directos. 
+Se deben modificar los siguientes archivos:
 
-No se debe modificar el tamaño del _i-nodo_, si no que, en cambio, se debe alterar para que tenga 11 bloques directos (en lugar de 12). De esta manera, el elemento 10 del arreglo `addrs[]` será el bloque indirecto sencillo, y el último elemento del arreglo será la dirección del nuevo bloque de indirección doble. 
+- `fs.h`: aquí deben modificar la estructura del _i-nodo_. No hay que modificar el tamaño del _i-nodo_, en cambio modificarlo para que sean 11 bloques directos en lugar de 12. De esta manera, el elemento 10 del arreglo `addrs[]` será el bloque indirecto sencillo y el último elemento del arreglo será la dirección del nuevo bloque de indirección doble. 
+- `fs.c`: deben modificar la función `bmap()`, implementando la indirección doble.
 
-Se debe modificar también, en el archivo `mkfs.c`, la función `iappend()` de manera similar. Este programa genera la imagen de disco inicial (archivo `fs.img`) para la máquina virtual, y crea los _i-nodos_ de los programas en disco.
 
 ### Tips:
 
